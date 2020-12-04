@@ -43,7 +43,7 @@ def test_part_two(password, letter, positions):
         if character == letter:
             if position in positions:
                 count += 1
-    return count == 1
+    return count == 1  # it can only be in one and only one of the positions
 
 
 if __name__ == "__main__":
