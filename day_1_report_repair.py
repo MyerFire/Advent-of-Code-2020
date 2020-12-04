@@ -25,4 +25,4 @@ if __name__ == "__main__":
     print("-" * 10)
     result_three, result_four, result_five = part_two()
     print(f"The three numbers are {result_three}, {result_four}, {result_five}")
-    print(f"The product of the two numbers is {result_three * result_four * result_five}")
+    print(f"The product of the three numbers is {result_three * result_four * result_five}")

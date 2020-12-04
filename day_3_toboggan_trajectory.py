@@ -24,7 +24,7 @@ def part_two_structure(x_slope, y_slope):
 
 
 def get_position(x, y):
-    while x >= len(map_[y]):
+    while x >= len(map_[y]):  # since the pattern repeats itself, just count backwards
         x = x - len(map_[y])
     return map_[y][x]  # y line (down) x character (right)
 
