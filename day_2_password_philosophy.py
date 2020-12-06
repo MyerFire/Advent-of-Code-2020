@@ -18,31 +18,28 @@ def parse_part_one():
 
 
 def test_part_one(password, letter, amount):
-    counter = 0
-    for character in password:
-        if character == letter:
-            counter += 1
-    return counter in amount  # amount is always going to be a range object
+    password = list(password)
+    count = password.count(letter)
+    return count in amount  # amount is always going to be a range object
 
 
 def parse_part_two():
     for password in passwords:
         separated = password.split(":")  # rule: password
         rule = separated[0].split(" ")
-        rule_amount = rule[0].split("-")  # 1-3 a: abcde
-        rule_amount = [int(number) for number in rule_amount]
+        rule_positions = rule[0].split("-")  # 1-3 a: abcde
+        rule_positions = [int(number) for number in rule_positions]
         # this retrieves [1, 3]
         letter = rule[1]
         password = separated[1]
-        yield test_part_two(password, letter, rule_amount)
+        yield test_part_two(password, letter, rule_positions)
 
 
 def test_part_two(password, letter, positions):
     count = 0
     for position, character in enumerate(password):
-        if character == letter:
-            if position in positions:
-                count += 1
+        if character == letter and position in positions:
+            count += 1
     return count == 1  # it can only be in one and only one of the positions
 
 

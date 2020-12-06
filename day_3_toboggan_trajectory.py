@@ -3,16 +3,7 @@ with open("Inputs/day_3.txt") as input_:
     map_ = [line.replace("\n", "") for line in map_]
 
 
-def part_one():
-    x = 0
-    y = 0
-    for _ in map_:
-        yield get_position(x, y)
-        x += 3
-        y += 1
-
-
-def part_two_structure(x_slope, y_slope):
+def slope(x_slope, y_slope):
     x = 0
     y = 0
     for _ in map_:
@@ -30,22 +21,22 @@ def get_position(x, y):
 
 
 if __name__ == "__main__":
-    path = [space for space in part_one()]
+    path = [space for space in slope(3, 1)]
     trees = path.count("#")
     print(f"There are {trees} trees on this path")
     print("-" * 10)
     trees = []
-    slopes = (
+    slopes = (  # given by question
         (1, 1),
         (3, 1),
         (5, 1),
         (7, 1),
         (1, 2)
     )
-    for slope in slopes:
-        path = [space for space in part_two_structure(slope[0], slope[1])]
+    for x_slope, y_slope in slopes:
+        path = [space for space in slope(x_slope, y_slope)]
         trees.append(path.count("#"))
     trees_product = 1
     for number in trees:
-        trees_product *= number  # numpy overflows here so like whatever
+        trees_product *= number
     print(f"The product of the number of trees on these paths is {trees_product}")
